@@ -1,0 +1,1685 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>English Study Guide — Módulos 3 & 4</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a2e;
+    --cream: #f5f0e8;
+    --teal: #16697a;
+    --teal-light: #489fb5;
+    --gold: #c4973a;
+    --gold-light: #ffa62b;
+    --red: #c1440e;
+    --green: #2d6a4f;
+    --light-bg: #f9f6f0;
+    --border: #ddd5c8;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  /* ---- HEADER ---- */
+  .site-header {
+    background: var(--ink);
+    color: white;
+    padding: 40px 0 30px;
+    text-align: center;
+    border-bottom: 4px solid var(--gold);
+  }
+  .site-header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.6rem;
+    letter-spacing: -1px;
+    margin-bottom: 8px;
+  }
+  .site-header p {
+    color: #aaa;
+    font-size: 1rem;
+    font-weight: 300;
+  }
+  .site-header .badges {
+    margin-top: 16px;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .badge {
+    background: var(--teal);
+    color: white;
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+  .badge.gold { background: var(--gold); }
+
+  /* ---- NAV TABS ---- */
+  .nav-tabs {
+    background: white;
+    border-bottom: 2px solid var(--border);
+    display: flex;
+    overflow-x: auto;
+    gap: 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .nav-tab {
+    padding: 14px 22px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    cursor: pointer;
+    color: #666;
+    border: none;
+    background: none;
+    white-space: nowrap;
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s;
+    letter-spacing: 0.3px;
+  }
+  .nav-tab:hover { color: var(--teal); }
+  .nav-tab.active {
+    color: var(--teal);
+    border-bottom-color: var(--teal);
+    background: #f0fafb;
+  }
+
+  /* ---- SECTIONS ---- */
+  .section { display: none; }
+  .section.active { display: block; }
+
+  /* ---- LAYOUT ---- */
+  .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+
+  /* ---- MODULE INTRO ---- */
+  .module-intro {
+    background: var(--ink);
+    color: white;
+    padding: 28px 32px;
+    border-radius: 10px;
+    margin-bottom: 36px;
+    position: relative;
+    overflow: hidden;
+  }
+  .module-intro::after {
+    content: '';
+    position: absolute;
+    right: -30px; top: -30px;
+    width: 120px; height: 120px;
+    border-radius: 50%;
+    background: var(--teal);
+    opacity: 0.2;
+  }
+  .module-intro h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    margin-bottom: 8px;
+    color: var(--gold-light);
+  }
+  .module-intro p { color: #ccc; font-size: 0.95rem; }
+
+  /* ---- THEORY CARD ---- */
+  .theory-card {
+    background: white;
+    border-radius: 10px;
+    margin-bottom: 28px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+  }
+  .theory-card-header {
+    background: var(--teal);
+    color: white;
+    padding: 14px 22px;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .theory-card-header.gold-header { background: var(--gold); }
+  .theory-card-header.red-header { background: var(--red); }
+  .theory-card-body { padding: 22px 26px; }
+
+  /* ---- TABLE ---- */
+  .grammar-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 14px 0;
+    font-size: 0.9rem;
+  }
+  .grammar-table th {
+    background: var(--ink);
+    color: white;
+    padding: 10px 14px;
+    text-align: left;
+    font-weight: 600;
+  }
+  .grammar-table td {
+    padding: 9px 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  .grammar-table tr:nth-child(even) td { background: var(--light-bg); }
+  .grammar-table .highlight { color: var(--teal); font-weight: 600; }
+
+  /* ---- INFO BOX ---- */
+  .info-box {
+    background: #e8f5f8;
+    border-left: 4px solid var(--teal-light);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    margin: 14px 0;
+    font-size: 0.92rem;
+  }
+  .info-box.warning {
+    background: #fff8e6;
+    border-left-color: var(--gold);
+  }
+  .info-box.danger {
+    background: #fdecea;
+    border-left-color: var(--red);
+  }
+  .info-box strong { display: block; margin-bottom: 4px; }
+
+  /* ---- EXAMPLE ---- */
+  .example-block {
+    background: var(--ink);
+    color: #e0e0e0;
+    padding: 16px 20px;
+    border-radius: 8px;
+    margin: 14px 0;
+    font-size: 0.93rem;
+  }
+  .example-block .eng { color: #7dd3fc; font-weight: 600; margin-bottom: 4px; }
+  .example-block .esp { color: #a0e0c8; font-style: italic; }
+
+  /* ---- FORMULA ---- */
+  .formula {
+    background: var(--ink);
+    color: var(--gold-light);
+    font-family: monospace;
+    font-size: 1.05rem;
+    padding: 14px 20px;
+    border-radius: 8px;
+    text-align: center;
+    margin: 16px 0;
+    letter-spacing: 0.5px;
+  }
+
+  /* ---- PREPOSITIONS GRID ---- */
+  .prep-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+    margin: 14px 0;
+  }
+  .prep-item {
+    background: var(--light-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 0.88rem;
+  }
+  .prep-item .eng { font-weight: 700; color: var(--teal); }
+  .prep-item .esp { color: #777; font-size: 0.82rem; }
+  .prep-item .ex { font-size: 0.82rem; margin-top: 4px; color: #555; }
+
+  /* ---- ADV FREQUENCY SCALE ---- */
+  .freq-scale {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin: 14px 0;
+  }
+  .freq-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .freq-bar {
+    height: 24px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: white;
+    min-width: 110px;
+  }
+  .freq-label { font-size: 0.85rem; color: #555; }
+
+  /* ===== EXERCISES ===== */
+  .exercises-header {
+    text-align: center;
+    margin-bottom: 36px;
+  }
+  .exercises-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    margin-bottom: 8px;
+  }
+  .exercises-header p { color: #666; }
+
+  .score-panel {
+    background: var(--ink);
+    color: white;
+    border-radius: 12px;
+    padding: 20px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+  .score-panel .score-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.4rem;
+    color: var(--gold-light);
+  }
+  .score-panel .score-label { font-size: 0.85rem; color: #aaa; }
+  .btn-check-all {
+    background: var(--gold);
+    color: var(--ink);
+    border: none;
+    padding: 12px 28px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'Source Sans 3', sans-serif;
+  }
+  .btn-check-all:hover { background: var(--gold-light); transform: translateY(-1px); }
+  .btn-reset {
+    background: transparent;
+    color: #aaa;
+    border: 1px solid #444;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'Source Sans 3', sans-serif;
+  }
+  .btn-reset:hover { color: white; border-color: #888; }
+
+  .btn-reset-q {
+    margin-left: auto;
+    background: transparent;
+    color: #999;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 3px 10px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: 'Source Sans 3', sans-serif;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .btn-reset-q:hover { background: #fee2e2; color: #c0392b; border-color: #e74c3c; }
+
+  /* ---- QUESTION CARD ---- */
+  .q-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin-bottom: 22px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    transition: box-shadow 0.2s;
+  }
+  .q-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
+  .q-card.correct-card { border-color: var(--green); }
+  .q-card.wrong-card { border-color: var(--red); }
+
+  .q-header {
+    background: var(--light-bg);
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .q-num {
+    background: var(--ink);
+    color: var(--gold-light);
+    border-radius: 6px;
+    width: 32px; height: 32px;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 0.82rem;
+    flex-shrink: 0;
+  }
+  .q-tag {
+    font-size: 0.72rem;
+    background: var(--teal);
+    color: white;
+    padding: 2px 9px;
+    border-radius: 12px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+  }
+  .q-body { padding: 20px 24px; }
+  .q-instruction { font-size: 0.88rem; color: #666; margin-bottom: 8px; }
+  .q-sentence {
+    font-size: 1.08rem;
+    font-weight: 700;
+    font-style: italic;
+    margin-bottom: 18px;
+    color: var(--ink);
+  }
+
+  .options { display: flex; flex-direction: column; gap: 8px; }
+  .option-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.15s;
+    font-size: 0.93rem;
+    user-select: none;
+  }
+  .option-label:hover { border-color: var(--teal-light); background: #f0fafb; }
+  .option-label input { accent-color: var(--teal); width: 16px; height: 16px; }
+
+  /* After check */
+  .option-label.opt-correct {
+    background: #e8f5e9;
+    border-color: var(--green);
+    color: var(--green);
+    font-weight: 600;
+  }
+  .option-label.opt-wrong {
+    background: #fdecea;
+    border-color: var(--red);
+    color: var(--red);
+    text-decoration: line-through;
+  }
+
+  .feedback {
+    margin-top: 14px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    display: none;
+  }
+  .feedback.show { display: block; }
+  .feedback.fb-correct { background: #e8f5e9; color: var(--green); }
+  .feedback.fb-wrong { background: #fdecea; color: var(--red); }
+
+  /* ---- FOOTER ---- */
+  footer {
+    background: var(--ink);
+    color: #666;
+    text-align: center;
+    padding: 24px;
+    font-size: 0.82rem;
+    margin-top: 60px;
+  }
+
+  /* ---- RESPONSIVE ---- */
+  @media (max-width: 600px) {
+    .site-header h1 { font-size: 1.8rem; }
+    .container { padding: 24px 14px; }
+    .score-panel { flex-direction: column; text-align: center; }
+    .prep-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 14px 0;
+  }
+  @media (max-width: 560px) { .two-col { grid-template-columns: 1fr; } }
+
+  .mini-tag {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--ink);
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin: 2px;
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <h1>English Study Guide</h1>
+  <p>Universidad Kennedy · Business English</p>
+  <div class="badges">
+    <span class="badge">Módulo 3 — Work-life & People</span>
+    <span class="badge gold">Módulo 4 — Past Events & Places</span>
+  </div>
+</header>
+
+<!-- NAV -->
+<nav class="nav-tabs">
+  <button class="nav-tab active" onclick="showSection('mod3')">📘 Módulo 3</button>
+  <button class="nav-tab" onclick="showSection('mod4')">📗 Módulo 4</button>
+  <button class="nav-tab" onclick="showSection('exercises')">✏️ Ejercicios</button>
+  <button class="nav-tab" onclick="showSection('quickref')">⚡ Quick Reference</button>
+</nav>
+
+<!-- ========================= MÓDULO 3 ========================= -->
+<section id="mod3" class="section active">
+<div class="container">
+
+  <div class="module-intro">
+    <h2>Módulo 3 — Work-life &amp; People</h2>
+    <p>Daily routines, actions happening now, quantities, frequencies and abilities.</p>
+  </div>
+
+  <!-- 5.1 Present Continuous -->
+  <div class="theory-card">
+    <div class="theory-card-header">5.1 Present Continuous</div>
+    <div class="theory-card-body">
+
+      <p style="margin-bottom:14px">Usamos el <strong>Presente Continuo</strong> para hablar de acciones que están ocurriendo <em>en este momento</em> o en este período de tiempo (acciones temporales).</p>
+
+      <div class="formula">VERB TO BE + ING FORM</div>
+
+      <table class="grammar-table">
+        <thead><tr><th>Persona</th><th>Afirmativa</th><th>Negativa</th><th>Interrogativa</th></tr></thead>
+        <tbody>
+          <tr><td>I</td><td class="highlight">am working</td><td>I'm not working</td><td>Am I working?</td></tr>
+          <tr><td>He / She / It</td><td class="highlight">is working</td><td>isn't working</td><td>Is he working?</td></tr>
+          <tr><td>You / They / We</td><td class="highlight">are working</td><td>aren't working</td><td>Are they working?</td></tr>
+        </tbody>
+      </table>
+
+      <div class="info-box warning">
+        <strong>⚠️ Verbos que NO usan Present Continuous:</strong>
+        know · like · want · hate · love · belong · mean · understand · remember · prefer
+      </div>
+
+      <div class="info-box">
+        <strong>Reglas ortográficas para -ING:</strong>
+        <ul style="margin-left:16px; margin-top:6px; font-size:0.9rem">
+          <li>En general: añadir <strong>-ing</strong> (listen → listening)</li>
+          <li>Verbo termina en <strong>consonante + e</strong>: se elimina la e (write → writing)</li>
+          <li>Verbo termina en <strong>-ie</strong>: cambia a -y (die → dying)</li>
+          <li>Monosílabos con <strong>vocal corta + consonante</strong>: duplicar consonante final (stop → stopping)</li>
+        </ul>
+      </div>
+
+      <div class="example-block">
+        <div class="eng">At this moment, many young people are looking for jobs.</div>
+        <div class="esp">En este momento, muchos jóvenes están buscando trabajo.</div>
+        <div class="eng" style="margin-top:10px">Now, we are planning next year's activities.</div>
+        <div class="esp">Ahora, estamos planeando las actividades del año próximo.</div>
+      </div>
+
+      <h4 style="margin: 18px 0 10px; color: var(--teal)">Preguntas</h4>
+      <div class="two-col">
+        <div class="info-box">
+          <strong>WH questions → info</strong>
+          What are you doing? → I am speaking.
+        </div>
+        <div class="info-box">
+          <strong>Yes/No questions</strong>
+          Are you studying? → Yes, I am. / No, I'm not.
+        </div>
+      </div>
+
+      <div class="info-box warning">
+        <strong>💡 Usos del Present Continuous:</strong>
+        <ol style="margin-left:16px; margin-top:6px; font-size:0.9rem">
+          <li>Acción ocurriendo <em>ahora mismo</em> — "She's watering the plants now"</li>
+          <li>Acción temporal (no en este instante) — "My brother is working in a pizza restaurant"</li>
+          <li>Planes futuros confirmados — "He's having dinner with us tonight"</li>
+          <li>Habitual + irritación (con always) — "He's always talking about himself"</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5.2 Quantifiers -->
+  <div class="theory-card">
+    <div class="theory-card-header gold-header">5.2 Quantifiers</div>
+    <div class="theory-card-body">
+
+      <p style="margin-bottom:14px">Los cuantificadores expresan <strong>cantidad</strong>: how much (incontables) / how many (contables).</p>
+
+      <div class="two-col">
+        <div class="info-box">
+          <strong>SOME → oraciones afirmativas</strong>
+          We have <em>some</em> problems.<br>
+          He's got <em>some</em> work to do.
+        </div>
+        <div class="info-box">
+          <strong>ANY → oraciones negativas / preguntas</strong>
+          We don't have <em>any</em> problems.<br>
+          Do you have <em>any</em> idea?
+        </div>
+      </div>
+
+      <div class="two-col">
+        <div class="info-box">
+          <strong>NO + noun = NOT A / NOT ANY</strong>
+          There is <em>no</em> bus. (= there isn't a bus)
+        </div>
+        <div class="info-box">
+          <strong>NONE → sin sustantivo</strong>
+          "How much money?" → "<em>None</em>."
+        </div>
+      </div>
+
+      <table class="grammar-table" style="margin-top:14px">
+        <thead><tr><th>Solo contables</th><th>Solo incontables</th><th>Ambos</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>many friends<br>few cars<br>both / each / either<br>a few / fewer / several / neither</td>
+            <td>much time<br>little energy<br>a little / (not) much / a bit of</td>
+            <td>a lot of / lots of / plenty of<br>some / any / no / none<br>more / most / enough / less / all</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="info-box warning">
+        <strong>A little vs A few:</strong><br>
+        <span class="mini-tag">a little</span> = pequeña cantidad (incontable): We have <em>a little</em> time.<br>
+        <span class="mini-tag">a few</span> = pequeño número (contable): I have <em>a few</em> friends.
+      </div>
+    </div>
+  </div>
+
+  <!-- 6.1 Adverbs of Frequency -->
+  <div class="theory-card">
+    <div class="theory-card-header red-header">6.1 Adverbs of Frequency</div>
+    <div class="theory-card-body">
+
+      <div class="freq-scale">
+        <div class="freq-item"><div class="freq-bar" style="background:#1a6b3c; width:100%">Always — Siempre</div></div>
+        <div class="freq-item"><div class="freq-bar" style="background:#2d8c55; width:88%">Almost always — Casi siempre</div></div>
+        <div class="freq-item"><div class="freq-bar" style="background:#3d9e6a; width:75%">Usually — Usualmente</div></div>
+        <div class="freq-item"><div class="freq-bar" style="background:#52a87a; width:62%">Often — A menudo</div></div>
+        <div class="freq-item"><div class="freq-bar" style="background:#c4973a; width:48%">Sometimes — A veces</div></div>
+        <div class="freq-item"><div class="freq-bar" style="background:#b87333; width:34%">Hardly ever — Casi nunca</div></div>
+        <div class="freq-item"><div class="freq-bar" style="background:#993b1a; width:20%">Almost never — Casi nunca</div></div>
+        <div class="freq-item"><div class="freq-bar" style="background:#7a1f0e; width:10%">Never — Nunca</div></div>
+      </div>
+
+      <div class="info-box" style="margin-top:18px">
+        <strong>📍 Posición del adverbio:</strong><br>
+        ANTES del verbo principal: I <strong>hardly ever</strong> watch TV.<br>
+        DESPUÉS del verbo To Be: I am <strong>always</strong> at home. <br>
+        <span style="color:var(--gold); font-weight:600">*Sometimes puede ir al inicio de la oración.</span>
+      </div>
+
+      <div class="example-block">
+        <div class="eng">How often do you exercise? → I go jogging <strong>once a week</strong>.</div>
+        <div class="eng" style="margin-top:8px">Do you ever watch TV? → I <strong>sometimes</strong> watch TV before bed.</div>
+        <div class="eng" style="margin-top:8px">I don't exercise <strong>very often</strong>. / I swim about <strong>three times a year</strong>.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6.2 Questions with How -->
+  <div class="theory-card">
+    <div class="theory-card-header">6.2 Questions with HOW</div>
+    <div class="theory-card-body">
+
+      <table class="grammar-table">
+        <thead><tr><th>Pregunta</th><th>Tipo de respuesta</th><th>Ejemplo</th></tr></thead>
+        <tbody>
+          <tr><td><strong>How often</strong></td><td>Frecuencia</td><td>Everyday / Twice a week / Not very often</td></tr>
+          <tr><td><strong>How long</strong></td><td>Duración</td><td>Eight hours a day / About an hour</td></tr>
+          <tr><td><strong>How well</strong></td><td>Habilidad + acciones</td><td>Pretty well / About average / Not very well</td></tr>
+          <tr><td><strong>How good</strong></td><td>Habilidad + personas/cosas</td><td>Pretty good / Ok / Not so good</td></tr>
+        </tbody>
+      </table>
+
+      <div class="example-block">
+        <div class="eng">How often do you go on vacations? → Once a year.</div>
+        <div class="eng" style="margin-top:8px">How good are you at swimming? → Not so good. I'm learning.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</section>
+
+<!-- ========================= MÓDULO 4 ========================= -->
+<section id="mod4" class="section">
+<div class="container">
+
+  <div class="module-intro">
+    <h2>Módulo 4 — Past Events &amp; Places</h2>
+    <p>Speaking about the past and describing locations &amp; directions.</p>
+  </div>
+
+  <!-- 7.1 Past Simple -->
+  <div class="theory-card">
+    <div class="theory-card-header">7.1 Past Simple</div>
+    <div class="theory-card-body">
+
+      <p style="margin-bottom:14px">Usamos el <strong>Past Simple</strong> para hablar de acciones <em>completadas</em> en un tiempo definido del pasado.</p>
+
+      <div class="info-box warning">
+        <strong>Marcadores de tiempo del Past Simple:</strong>
+        <span class="mini-tag">yesterday</span>
+        <span class="mini-tag">last week/month/year</span>
+        <span class="mini-tag">ago</span>
+        <span class="mini-tag">in 2015</span>
+      </div>
+
+      <h4 style="margin:16px 0 10px; color:var(--teal)">Verbos Regulares → agregar -ED</h4>
+      <table class="grammar-table">
+        <thead><tr><th>Persona</th><th>Afirmativa</th><th>Negativa (DID NOT)</th><th>Ejemplo</th></tr></thead>
+        <tbody>
+          <tr><td>I</td><td class="highlight">WORKED</td><td>didn't work</td><td>I worked for a company.</td></tr>
+          <tr><td>You</td><td class="highlight">VISITED</td><td>didn't visit</td><td>You visited your grandmother.</td></tr>
+          <tr><td>He/She/It</td><td class="highlight">TRAVELED</td><td>didn't travel</td><td>She traveled to Spain.</td></tr>
+          <tr><td>They / We</td><td class="highlight">PLAYED</td><td>didn't play</td><td>We played tennis as kids.</td></tr>
+        </tbody>
+      </table>
+
+      <div class="formula">DID + NOT + BASE FORM OF THE VERB (infinitive without "to")</div>
+
+      <h4 style="margin:16px 0 10px; color:var(--teal)">Preguntas en Past Simple</h4>
+      <div class="two-col">
+        <div class="info-box">
+          <strong>WH question</strong>
+          What did you do? → I played in the street.
+        </div>
+        <div class="info-box">
+          <strong>Yes/No question</strong>
+          Did you play? → Yes, I did. / No, I didn't.
+        </div>
+      </div>
+
+      <h4 style="margin:16px 0 10px; color:var(--teal)">Verbo TO BE en pasado</h4>
+      <table class="grammar-table">
+        <thead><tr><th>Pronombres</th><th>Afirmativo</th><th>Negativo</th></tr></thead>
+        <tbody>
+          <tr><td>I / He / She / It</td><td class="highlight">was</td><td>was not / wasn't</td></tr>
+          <tr><td>You / They / We</td><td class="highlight">were</td><td>were not / weren't</td></tr>
+        </tbody>
+      </table>
+
+      <div class="example-block">
+        <div class="eng">She <strong>was</strong> in Europe last year. / They <strong>were</strong> not at the office.</div>
+        <div class="eng" style="margin-top:8px"><strong>Was</strong> Peter at the office yesterday? → Yes, he <strong>was</strong>.</div>
+        <div class="eng" style="margin-top:8px">The chairman <strong>decided</strong> to sell the company last month.</div>
+        <div class="esp">El presidente decidió vender la empresa el mes pasado.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8.1 Present Perfect -->
+  <div class="theory-card">
+    <div class="theory-card-header gold-header">8.1 Present Perfect</div>
+    <div class="theory-card-body">
+
+      <p style="margin-bottom:14px">Usamos el <strong>Present Perfect</strong> para hablar de acciones que empezaron en el pasado pero tienen relación con el presente (tiempo indefinido).</p>
+
+      <div class="formula">HAS / HAVE + PAST PARTICIPLE</div>
+
+      <table class="grammar-table">
+        <thead><tr><th>Persona</th><th>Verbo HAVE</th><th>Past Participle</th><th>Ejemplo</th></tr></thead>
+        <tbody>
+          <tr><td>SHE / HE / IT</td><td class="highlight">HAS</td><td>worked / written / been</td><td>She has worked hard.</td></tr>
+          <tr><td>I / YOU / THEY / WE</td><td class="highlight">HAVE</td><td>done / had / gone</td><td>I have done many things.</td></tr>
+        </tbody>
+      </table>
+
+      <div class="info-box">
+        <strong>Past Participle = 3ª columna del verbo:</strong><br>
+        go → went → <strong>gone</strong> &nbsp;|&nbsp; win → won → <strong>won</strong> &nbsp;|&nbsp; see → saw → <strong>seen</strong><br>
+        (Verbos regulares: 2ª y 3ª columna son iguales)
+      </div>
+
+      <h4 style="margin:16px 0 10px; color:var(--gold)">Usos y marcadores de tiempo</h4>
+
+      <table class="grammar-table">
+        <thead><tr><th>#</th><th>Uso</th><th>Marcadores</th><th>Ejemplo</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>Acción que empezó en el pasado y continúa</td><td class="highlight">SINCE / FOR</td><td>I have lived here since 2011.</td></tr>
+          <tr><td>2</td><td>Experiencia hasta ahora</td><td class="highlight">EVER / NEVER / YET / SO FAR / UP TO NOW</td><td>Have you ever been to Paris?</td></tr>
+          <tr><td>3</td><td>Pasado con relación al presente</td><td></td><td>I can't enter. I have lost my keys.</td></tr>
+          <tr><td>4</td><td>Pasado reciente</td><td class="highlight">JUST / RECENTLY / LATELY</td><td>She has just finished her homework.</td></tr>
+          <tr><td>5</td><td>Antes de lo esperado</td><td class="highlight">ALREADY</td><td>I have already finished.</td></tr>
+          <tr><td>6</td><td>Acción repetida</td><td class="highlight">TWICE / THREE TIMES / SEVERAL TIMES</td><td>She has gone to Boston several times.</td></tr>
+        </tbody>
+      </table>
+
+      <div class="info-box danger">
+        <strong>🚫 NUNCA usar Present Perfect con:</strong>
+        <span class="mini-tag">yesterday</span>
+        <span class="mini-tag">last week</span>
+        <span class="mini-tag">ago</span>
+        → Usar Simple Past en su lugar.<br>
+        ✅ <em>She went to the movies yesterday.</em><br>
+        ❌ <em>She has gone to the movies yesterday.</em> — WRONG
+      </div>
+
+      <h4 style="margin:16px 0 10px; color:var(--gold)">Negativa e Interrogativa</h4>
+      <div class="formula">HAVEN'T / HASN'T + Past Participle | HAVE/HAS + Subject + Past Participle?</div>
+    </div>
+  </div>
+
+  <!-- 8.2 There is / There are -->
+  <div class="theory-card">
+    <div class="theory-card-header red-header">8.2 There is / There are</div>
+    <div class="theory-card-body">
+
+      <p style="margin-bottom:14px"><strong>There is / There are</strong> = <em>hay</em> en español.</p>
+
+      <table class="grammar-table">
+        <thead><tr><th>Tipo de sustantivo</th><th>Afirmativo</th><th>Negativo</th><th>Interrogativo</th></tr></thead>
+        <tbody>
+          <tr><td>Singular / incontable</td><td>There <strong>is</strong> a bank.</td><td>There <strong>isn't</strong> a bank.</td><td><strong>Is there</strong> a bank?</td></tr>
+          <tr><td>Plural / contable</td><td>There <strong>are</strong> some parks.</td><td>There <strong>aren't</strong> any parks.</td><td><strong>Are there</strong> any parks?</td></tr>
+        </tbody>
+      </table>
+
+      <div class="example-block">
+        <div class="eng">Is there a bank near here? → Yes, there is. There's one across from the fast food restaurant.</div>
+        <div class="eng" style="margin-top:8px">Are there any parks around here? → Yes, there are. There are some nice parks on Libertador Street.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8.3 Prepositions of Place -->
+  <div class="theory-card">
+    <div class="theory-card-header">8.3 Prepositions of Place</div>
+    <div class="theory-card-body">
+
+      <p style="margin-bottom:14px">Las <strong>prepositions of place</strong> indican dónde están las cosas, personas o lugares.</p>
+
+      <div class="prep-grid">
+        <div class="prep-item"><div class="eng">On</div><div class="esp">sobre</div><div class="ex">On the table / on Alem street</div></div>
+        <div class="prep-item"><div class="eng">Next to</div><div class="esp">al lado de</div><div class="ex">Next to my house there is a grocery store.</div></div>
+        <div class="prep-item"><div class="eng">Near / close to</div><div class="esp">cerca</div><div class="ex">Rivadavia is near Corrientes street.</div></div>
+        <div class="prep-item"><div class="eng">Across from / opposite</div><div class="esp">enfrente de</div><div class="ex">My neighbor lives across from my house.</div></div>
+        <div class="prep-item"><div class="eng">In front of</div><div class="esp">enfrente</div><div class="ex">I live in front of my neighbor's.</div></div>
+        <div class="prep-item"><div class="eng">In back of / behind</div><div class="esp">detrás</div><div class="ex">There is a garden behind the house.</div></div>
+        <div class="prep-item"><div class="eng">Between</div><div class="esp">entre</div><div class="ex">The bank is between the drugstore and the pharmacy.</div></div>
+        <div class="prep-item"><div class="eng">On the corner of</div><div class="esp">en la esquina de</div><div class="ex">The shop is on the corner of Paso and Uruguay streets.</div></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</section>
+
+<!-- ========================= EXERCISES ========================= -->
+<section id="exercises" class="section">
+<div class="container">
+
+  <div class="exercises-header">
+    <h2>Ejercicios de Práctica</h2>
+    <p>35 preguntas estilo parcial — Módulos 3 y 4</p>
+  </div>
+
+  <div class="score-panel">
+    <div>
+      <div class="score-num" id="scoreDisplay">0 / 35</div>
+      <div class="score-label">Respuestas correctas</div>
+    </div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+      <button class="btn-check-all" onclick="checkAll()">✔ Verificar todas</button>
+      <button class="btn-reset" onclick="resetAll()" style="background:#e74c3c;color:white;border:none;padding:12px 22px;border-radius:8px;font-weight:700;font-size:0.95rem;cursor:pointer;font-family:inherit;transition:all 0.2s;" onmouseover="this.style.background='#c0392b'" onmouseout="this.style.background='#e74c3c'">🔄 Reiniciar todo</button>
+    </div>
+  </div>
+
+  <!-- Q1 -->
+  <div class="q-card" id="qcard-1">
+    <div class="q-header"><div class="q-num">1</div><span class="q-tag">Quantifiers</span></div>
+    <div class="q-body">
+      <div class="q-instruction">Select the correct ending for the sentence.</div>
+      <div class="q-sentence">The police officer is not giving them ...</div>
+      <div class="options" data-type="radio" data-correct="any information.">
+        <label class="option-label"><input type="radio" name="q1" value="some of information."> some of information.</label>
+        <label class="option-label"><input type="radio" name="q1" value="a lot information."> a lot information.</label>
+        <label class="option-label"><input type="radio" name="q1" value="many information."> many information.</label>
+        <label class="option-label"><input type="radio" name="q1" value="any information."> any information.</label>
+        <label class="option-label"><input type="radio" name="q1" value="lots information."> lots information.</label>
+      </div>
+      <div class="feedback" id="fb-1"></div>
+    </div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="q-card" id="qcard-2">
+    <div class="q-header"><div class="q-num">2</div><span class="q-tag">Adverbs of Frequency</span></div>
+    <div class="q-body">
+      <div class="q-instruction">Choose the correct option to complete the idea.</div>
+      <div class="q-sentence">I am not ... late for class. I am always on time.</div>
+      <div class="options" data-type="radio" data-correct="usually">
+        <label class="option-label"><input type="radio" name="q2" value="usually"> usually</label>
+        <label class="option-label"><input type="radio" name="q2" value="always"> always</label>
+        <label class="option-label"><input type="radio" name="q2" value="sometimes"> sometimes</label>
+        <label class="option-label"><input type="radio" name="q2" value="never"> never</label>
+        <label class="option-label"><input type="radio" name="q2" value="hardly ever"> hardly ever</label>
+      </div>
+      <div class="feedback" id="fb-2"></div>
+    </div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="q-card" id="qcard-3">
+    <div class="q-header"><div class="q-num">3</div><span class="q-tag">Present Continuous</span></div>
+    <div class="q-body">
+      <div class="q-instruction">Select the correct ending for the sentence.</div>
+      <div class="q-sentence">Today those students are not ...</div>
+      <div class="options" data-type="radio" data-correct="learning Chinese.">
+        <label class="option-label"><input type="radio" name="q3" value="be learning Chinese."> be learning Chinese.</label>
+        <label class="option-label"><input type="radio" name="q3" value="learning Chinese."> learning Chinese.</label>
+        <label class="option-label"><input type="radio" name="q3" value="learns Chinese."> learns Chinese.</label>
+        <label class="option-label"><input type="radio" name="q3" value="can learn Chinese."> can learn Chinese.</label>
+      </div>
+      <div class="feedback" id="fb-3"></div>
+    </div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="q-card" id="qcard-4">
+    <div class="q-header"><div class="q-num">4</div><span class="q-tag">Quantifiers</span></div>
+    <div class="q-body">
+      <div class="q-instruction">Select the correct ending for the sentence.</div>
+      <div class="q-sentence">Every class, that boy tells us ...</div>
+      <div class="options" data-type="radio" data-correct="some jokes.">
+        <label class="option-label"><input type="radio" name="q4" value="a jokes."> a jokes.</label>
+        <label class="option-label"><input type="radio" name="q4" value="some jokes."> some jokes.</label>
+        <label class="option-label"><input type="radio" name="q4" value="a lots of jokes."> a lots of jokes.</label>
+        <label class="option-label"><input type="radio" name="q4" value="a lot jokes."> a lot jokes.</label>
+        <label class="option-label"><input type="radio" name="q4" value="any jokes."> any jokes.</label>
+      </div>
+      <div class="feedback" id="fb-4"></div>
+    </div>
+  </div>
+
+  <!-- Q5 -->
+  <div class="q-card" id="qcard-5">
+    <div class="q-header"><div class="q-num">5</div><span class="q-tag">Adverbs of Frequency</span></div>
+    <div class="q-body">
+      <div class="q-instruction">Choose the correct option to complete the idea.</div>
+      <div class="q-sentence">That young boy ... wakes up late. He loves sleeping!</div>
+      <div class="options" data-type="radio" data-correct="often">
+        <label class="option-label"><input type="radio" name="q5" value="at the moment"> at the moment</label>
+        <label class="option-label"><input type="radio" name="q5" value="not never"> not never</label>
+        <label class="option-label"><input type="radio" name="q5" value="often"> often</label>
+        <label class="option-label"><input type="radio" name="q5" value="every"> every</label>
+        <label class="option-label"><input type="radio" name="q5" value="ever"> ever</label>
+      </div>
+      <div class="feedback" id="fb-5"></div>
+    </div>
+  </div>
+
+  <!-- Q6 -->
+  <div class="q-card" id="qcard-6">
+    <div class="q-header"><div class="q-num">6</div><span class="q-tag">Present Continuous</span></div>
+    <div class="q-body">
+      <div class="q-instruction">Choose the correct option to complete the idea.</div>
+      <div class="q-sentence">What ... you studying?</div>
+      <div class="options" data-type="radio" data-correct="are">
+        <label class="option-label"><input type="radio" name="q6" value="do"> do</label>
+        <label class="option-label"><input type="radio" name="q6" value="not"> not</label>
+        <label class="option-label"><input type="radio" name="q6" value="is"> is</label>
+        <label class="option-label"><input type="radio" name="q6" value="are"> are</label>
+        <label class="option-label"><input type="radio" name="q6" value="does"> does</label>
+      </div>
+      <div class="feedback" id="fb-6"></div>
+    </div>
+  </div>
+
+  <!-- Q7 -->
+  <div class="q-card" id="qcard-7">
+    <div class="q-header"><div class="q-num">7</div><span class="q-tag">Present Continuous</span></div>
+    <div class="q-body">
+      <div class="q-instruction">Select ALL grammatically correct sentences. (Más de una opción puede ser correcta.)</div>
+      <div class="q-sentence">Charly ... beautiful songs now.</div>
+      <div class="options" data-type="checkbox" data-correct="is singing">
+        <label class="option-label"><input type="checkbox" name="q7" value="is singing"> is singing</label>
+        <label class="option-label"><input type="checkbox" name="q7" value="singing"> singing</label>
+        <label class="option-label"><input type="checkbox" name="q7" value="isn't singing"> isn't singing</label>
+        <label class="option-label"><input type="checkbox" name="q7" value="sings not"> sings not</label>
+        <label class="option-label"><input type="checkbox" name="q7" value="not sing"> not sing</label>
+      </div>
+      <div class="feedback" id="fb-7"></div>
+    </div>
+  </div>
+
+  <!-- Q8 -->
+  <div class="q-card" id="qcard-8">
+    <div class="q-header"><div class="q-num">8</div><span class="q-tag">Present Continuous</span></div>
+    <div class="q-body">
+      <div class="q-instruction">Select ALL grammatically correct sentences.</div>
+      <div class="q-sentence">They ... at the joke now.</div>
+      <div class="options" data-type="checkbox" data-correct="are laughing|aren't laughing">
+        <label class="option-label"><input type="checkbox" name="q8" value="are laughing"> are laughing</label>
+        <label class="option-label"><input type="checkbox" name="q8" value="does laugh"> does laugh</label>
+        <label class="option-label"><input type="checkbox" name="q8" value="is not laughing"> is not laughing</label>
+        <label class="option-label"><input type="checkbox" name="q8" value="laughs"> laughs</label>
+        <label class="option-label"><input type="checkbox" name="q8" value="aren't laughing"> aren't laughing</label>
+      </div>
+      <div class="feedback" id="fb-8"></div>
+    </div>
+  </div>
+
+  <!-- Q9 -->
+  <div class="q-card" id="qcard-9">
+    <div class="q-header"><div class="q-num">9</div><span class="q-tag">Present Continuous</span></div>
+    <div class="q-body">
+      <div class="q-instruction">Select ALL grammatically correct sentences.</div>
+      <div class="q-sentence">I ... my teeth after lunch today.</div>
+      <div class="options" data-type="checkbox" data-correct="am brushing|am not brushing">
+        <label class="option-label"><input type="checkbox" name="q9" value="am brushing"> am brushing</label>
+        <label class="option-label"><input type="checkbox" name="q9" value="brushing"> brushing</label>
+        <label class="option-label"><input type="checkbox" name="q9" value="do brushing"> do brushing</label>
+        <label class="option-label"><input type="checkbox" name="q9" value="not brushing"> not brushing</label>
+        <label class="option-label"><input type="checkbox" name="q9" value="am not brushing"> am not brushing</label>
+      </div>
+      <div class="feedback" id="fb-9"></div>
+    </div>
+  </div>
+
+  <!-- Q10 -->
+  <div class="q-card" id="qcard-10">
+    <div class="q-header"><div class="q-num">10</div><span class="q-tag">Present Continuous</span></div>
+    <div class="q-body">
+      <div class="q-instruction">Choose the correct option to complete the idea.</div>
+      <div class="q-sentence">Who is ... into a new comfortable house?</div>
+      <div class="options" data-type="radio" data-correct="moving">
+        <label class="option-label"><input type="radio" name="q10" value="moves"> moves</label>
+        <label class="option-label"><input type="radio" name="q10" value="are move"> are move</label>
+        <label class="option-label"><input type="radio" name="q10" value="is move"> is move</label>
+        <label class="option-label"><input type="radio" name="q10" value="moving"> moving</label>
+        <label class="option-label"><input type="radio" name="q10" value="move"> move</label>
+      </div>
+      <div class="feedback" id="fb-10"></div>
+    </div>
+  </div>
+
+  <!-- Q11 -->
+  <div class="q-card" id="qcard-11">
+    <div class="q-header"><div class="q-num">11</div><span class="q-tag">Present Perfect</span></div>
+    <div class="q-body">
+      <div class="q-instruction">Select the correct ending for the sentence.</div>
+      <div class="q-sentence">I have already ...</div>
+      <div class="options" data-type="radio" data-correct="visited the Great Wall in China.">
+        <label class="option-label"><input type="radio" name="q11" value="did visit the Great Wall in China."> did visit the Great Wall in China.</label>
+        <label class="option-label"><input type="radio" name="q11" value="visit the Great Wall in China."> visit the Great Wall in China.</label>
+        <label class="option-label"><input type="radio" name="q11" value="visited the Great Wall in China."> visited the Great Wall in China.</label>
+        <label class="option-label"><input type="radio" name="q11" value="visiting the Great Wall in China."> visiting the Great Wall in China.</label>
+        <label class="option-label"><input type="radio" name="q11" value="visits the Great Wall in China."> visits the Great Wall in China.</label>
+      </div>
+      <div class="feedback" id="fb-11"></div>
+    </div>
+  </div>
+
+  <!-- Q12 -->
+  <div class="q-card" id="qcard-12">
+    <div class="q-header"><div class="q-num">12</div><span class="q-tag">Past Simple</span></div>
+    <div class="q-body">
+      <div class="q-instruction">Select the correct ending for the sentence.</div>
+      <div class="q-sentence">Last Sunday, we got up early and ...</div>
+      <div class="options" data-type="radio" data-correct="went to the beach.">
+        <label class="option-label"><input type="radio" name="q12" value="went to the beach."> went to the beach.</label>
+        <label class="option-label"><input type="radio" name="q12" value="have gone to the beach."> have gone to the beach.</label>
+        <label class="option-label"><input type="radio" name="q12" value="go to the beach."> go to the beach.</label>
+        <label class="option-label"><input type="radio" name="q12" value="going to the beach."> going to the beach.</label>
+        <label class="option-label"><input type="radio" name="q12" value="gone to the beach."> gone to the beach.</label>
+      </div>
+      <div class="feedback" id="fb-12"></div>
+    </div>
+  </div>
+
+  <!-- Q13 -->
+  <div class="q-card" id="qcard-13">
+    <div class="q-header"><div class="q-num">13</div><span class="q-tag">Prepositions of Place</span></div>
+    <div class="q-body">
+      <div class="q-instruction">Choose the correct option to answer the question.</div>
+      <div class="q-sentence">A: Where is the car park? / B: ...</div>
+      <div class="options" data-type="radio" data-correct="It is near the airport.">
+        <label class="option-label"><input type="radio" name="q13" value="It is under to the airport."> It is under to the airport.</label>
+        <label class="option-label"><input type="radio" name="q13" value="It is next across the airport."> It is next across the airport.</label>
+        <label class="option-label"><input type="radio" name="q13" value="It is far from towards the airport."> It is far from towards the airport.</label>
+        <label class="option-label"><input type="radio" name="q13" value="It is near the airport."> It is near the airport.</label>
+        <label class="option-label"><input type="radio" name="q13" value="It is in front on the airport."> It is in front on the airport.</label>
+      </div>
+      <div class="feedback" id="fb-13"></div>
+    </div>
+  </div>
+
+  <!-- Q14 -->
+  <div class="q-card" id="qcard-14">
+    <div class="q-header"><div class="q-num">14</div><span class="q-tag">Present Perfect — True/False</span></div>
+    <div class="q-body">
+      <div class="q-instruction">The following sentence uses Present Perfect. Decide if this is TRUE or FALSE.</div>
+      <div class="q-sentence">The shopping center is between the park and the coffee shop.</div>
+      <div class="options" data-type="radio" data-correct="Falso">
+        <label class="option-label"><input type="radio" name="q14" value="Verdadero"> Verdadero</label>
+        <label class="option-label"><input type="radio" name="q14" value="Falso"> Falso</label>
+      </div>
+      <div class="feedback" id="fb-14"><em>(Usa Present Simple — "is between" no es Present Perfect)</em></div>
+    </div>
+  </div>
+
+  <!-- Q15 -->
+  <div class="q-card" id="qcard-15">
+    <div class="q-header"><div class="q-num">15</div><span class="q-tag">Past Simple — True/False</span></div>
+    <div class="q-body">
+      <div class="q-instruction">The following sentence uses Simple Past. Decide if this is TRUE or FALSE.</div>
+      <div class="q-sentence">I enjoyed the film on TV yesterday.</div>
+      <div class="options" data-type="radio" data-correct="Verdadero">
+        <label class="option-label"><input type="radio" name="q15" value="Verdadero"> Verdadero</label>
+        <label class="option-label"><input type="radio" name="q15" value="Falso"> Falso</label>
+      </div>
+      <div class="feedback" id="fb-15"><em>("enjoyed" + "yesterday" → Past Simple ✓)</em></div>
+    </div>
+  </div>
+
+  <!-- Q16 -->
+  <div class="q-card" id="qcard-16">
+    <div class="q-header"><div class="q-num">16</div><span class="q-tag">Present Perfect</span></div>
+    <div class="q-body">
+      <div class="q-instruction">Choose the correct option to answer the question.</div>
+      <div class="q-sentence">A: Have you ever cut yourself? / B: ...</div>
+      <div class="options" data-type="radio" data-correct="Yes, I have – and it hurt a lot!">
+        <label class="option-label"><input type="radio" name="q16" value="Yes, I have cutted myself and it hurt a lot!."> Yes, I have cutted myself and it hurt a lot!</label>
+        <label class="option-label"><input type="radio" name="q16" value="Yes, I cuts myself and it hurted a lot!"> Yes, I cuts myself and it hurted a lot!</label>
+        <label class="option-label"><input type="radio" name="q16" value="Yes, I does – and it hurts a lot!"> Yes, I does – and it hurts a lot!</label>
+        <label class="option-label"><input type="radio" name="q16" value="Yes, I have – and it hurt a lot!"> Yes, I have – and it hurt a lot!</label>
+        <label class="option-label"><input type="radio" name="q16" value="Yes, I do – and it hurt a lot!"> Yes, I do – and it hurt a lot!</label>
+      </div>
+      <div class="feedback" id="fb-16"></div>
+    </div>
+  </div>
+
+  <!-- Q17 -->
+  <div class="q-card" id="qcard-17">
+    <div class="q-header"><div class="q-num">17</div><span class="q-tag">Past Simple</span></div>
+    <div class="q-body">
+      <div class="q-instruction">Choose the correct option to answer the question.</div>
+      <div class="q-sentence">A: Where did she leave her red wallet? / B: ...</div>
+      <div class="options" data-type="radio" data-correct="She left it at home.">
+        <label class="option-label"><input type="radio" name="q17" value="She leave it at home."> She leave it at home.</label>
+        <label class="option-label"><input type="radio" name="q17" value="She left it at home."> She left it at home.</label>
+        <label class="option-label"><input type="radio" name="q17" value="She have left it at home."> She have left it at home.</label>
+        <label class="option-label"><input type="radio" name="q17" value="She leaves it at home."> She leaves it at home.</label>
+        <label class="option-label"><input type="radio" name="q17" value="She did leave it at home."> She did leave it at home.</label>
+      </div>
+      <div class="feedback" id="fb-17"></div>
+    </div>
+  </div>
+
+  <!-- Q18 -->
+  <div class="q-card" id="qcard-18">
+    <div class="q-header"><div class="q-num">18</div><span class="q-tag">Present Perfect</span></div>
+    <div class="q-body">
+      <div class="q-instruction">Select ALL grammatically correct sentences.</div>
+      <div class="q-sentence">I ... won first prize yet.</div>
+      <div class="options" data-type="checkbox" data-correct="have not|haven't">
+        <label class="option-label"><input type="checkbox" name="q18" value="have not"> have not</label>
+        <label class="option-label"><input type="checkbox" name="q18" value="haves"> haves</label>
+        <label class="option-label"><input type="checkbox" name="q18" value="has"> has</label>
+        <label class="option-label"><input type="checkbox" name="q18" value="haven't"> haven't</label>
+        <label class="option-label"><input type="checkbox" name="q18" value="can"> can</label>
+      </div>
+      <div class="feedback" id="fb-18"></div>
+    </div>
+  </div>
+
+  <!-- Q19 -->
+  <div class="q-card" id="qcard-19">
+    <div class="q-header"><div class="q-num">19</div><span class="q-tag">Past Simple — To Be</span></div>
+    <div class="q-body">
+      <div class="q-instruction">Select ALL grammatically correct sentences.</div>
+      <div class="q-sentence">They ... nice twins when they were young.</div>
+      <div class="options" data-type="checkbox" data-correct="were not|were">
+        <label class="option-label"><input type="checkbox" name="q19" value="weren't"> weren't</label>
+        <label class="option-label"><input type="checkbox" name="q19" value="are not"> are not</label>
+        <label class="option-label"><input type="checkbox" name="q19" value="were not"> were not</label>
+        <label class="option-label"><input type="checkbox" name="q19" value="were"> were</label>
+        <label class="option-label"><input type="checkbox" name="q19" value="have been"> have been</label>
+      </div>
+      <div class="feedback" id="fb-19"></div>
+    </div>
+  </div>
+
+  <!-- Q20 -->
+  <div class="q-card" id="qcard-20">
+    <div class="q-header"><div class="q-num">20</div><span class="q-tag">Past Simple</span></div>
+    <div class="q-body">
+      <div class="q-instruction">Select ALL grammatically correct sentences.</div>
+      <div class="q-sentence">The thief ... a special key.</div>
+      <div class="options" data-type="checkbox" data-correct="used|didn't use|did not use">
+        <label class="option-label"><input type="checkbox" name="q20" value="used"> used</label>
+        <label class="option-label"><input type="checkbox" name="q20" value="didn't use"> didn't use</label>
+        <label class="option-label"><input type="checkbox" name="q20" value="did not used"> did not used</label>
+        <label class="option-label"><input type="checkbox" name="q20" value="use"> use</label>
+        <label class="option-label"><input type="checkbox" name="q20" value="did not use"> did not use</label>
+      </div>
+      <div class="feedback" id="fb-20"></div>
+    </div>
+  </div>
+
+  <!-- Q21 -->
+  <div class="q-card" id="qcard-21">
+    <div class="q-header"><div class="q-num">21</div><span class="q-tag">Present Continuous</span></div>
+    <div class="q-body">
+      <div class="q-instruction">Select the correct ending for the sentence.</div>
+      <div class="q-sentence">Look! The children ...</div>
+      <div class="options" data-type="radio" data-correct="are playing in the park.">
+        <label class="option-label"><input type="radio" name="q21" value="play in the park."> play in the park.</label>
+        <label class="option-label"><input type="radio" name="q21" value="are playing in the park."> are playing in the park.</label>
+        <label class="option-label"><input type="radio" name="q21" value="is playing in the park."> is playing in the park.</label>
+        <label class="option-label"><input type="radio" name="q21" value="were playing in the park."> were playing in the park.</label>
+        <label class="option-label"><input type="radio" name="q21" value="have played in the park."> have played in the park.</label>
+      </div>
+      <div class="feedback" id="fb-21"></div>
+    </div>
+  </div>
+
+  <!-- Q22 -->
+  <div class="q-card" id="qcard-22">
+    <div class="q-header"><div class="q-num">22</div><span class="q-tag">Present Perfect — SINCE / FOR</span></div>
+    <div class="q-body">
+      <div class="q-instruction">Choose the correct option to complete the sentence.</div>
+      <div class="q-sentence">He has worked at this company ... ten years.</div>
+      <div class="options" data-type="radio" data-correct="for">
+        <label class="option-label"><input type="radio" name="q22" value="since"> since</label>
+        <label class="option-label"><input type="radio" name="q22" value="for"> for</label>
+        <label class="option-label"><input type="radio" name="q22" value="ago"> ago</label>
+        <label class="option-label"><input type="radio" name="q22" value="already"> already</label>
+        <label class="option-label"><input type="radio" name="q22" value="yet"> yet</label>
+      </div>
+      <div class="feedback" id="fb-22"></div>
+    </div>
+  </div>
+
+  <!-- Q23 -->
+  <div class="q-card" id="qcard-23">
+    <div class="q-header"><div class="q-num">23</div><span class="q-tag">Present Perfect — SINCE / FOR</span></div>
+    <div class="q-body">
+      <div class="q-instruction">Choose the correct option to complete the sentence.</div>
+      <div class="q-sentence">They have lived in Buenos Aires ... 2015.</div>
+      <div class="options" data-type="radio" data-correct="since">
+        <label class="option-label"><input type="radio" name="q23" value="since"> since</label>
+        <label class="option-label"><input type="radio" name="q23" value="for"> for</label>
+        <label class="option-label"><input type="radio" name="q23" value="ago"> ago</label>
+        <label class="option-label"><input type="radio" name="q23" value="yet"> yet</label>
+        <label class="option-label"><input type="radio" name="q23" value="just"> just</label>
+      </div>
+      <div class="feedback" id="fb-23"></div>
+    </div>
+  </div>
+
+  <!-- Q24 -->
+  <div class="q-card" id="qcard-24">
+    <div class="q-header"><div class="q-num">24</div><span class="q-tag">Past Simple vs Present Perfect</span></div>
+    <div class="q-body">
+      <div class="q-instruction">Choose the grammatically correct sentence.</div>
+      <div class="q-sentence">Which sentence is correct?</div>
+      <div class="options" data-type="radio" data-correct="I have never been to Japan.">
+        <label class="option-label"><input type="radio" name="q24" value="I have never been to Japan."> I have never been to Japan.</label>
+        <label class="option-label"><input type="radio" name="q24" value="I never went to Japan yet."> I never went to Japan yet.</label>
+        <label class="option-label"><input type="radio" name="q24" value="I have never went to Japan."> I have never went to Japan.</label>
+        <label class="option-label"><input type="radio" name="q24" value="I never have been to Japan."> I never have been to Japan.</label>
+      </div>
+      <div class="feedback" id="fb-24"></div>
+    </div>
+  </div>
+
+  <!-- Q25 -->
+  <div class="q-card" id="qcard-25">
+    <div class="q-header"><div class="q-num">25</div><span class="q-tag">There is / There are</span></div>
+    <div class="q-body">
+      <div class="q-instruction">Choose the correct option to complete the sentence.</div>
+      <div class="q-sentence">... a supermarket near the hotel.</div>
+      <div class="options" data-type="radio" data-correct="There is">
+        <label class="option-label"><input type="radio" name="q25" value="There is"> There is</label>
+        <label class="option-label"><input type="radio" name="q25" value="There are"> There are</label>
+        <label class="option-label"><input type="radio" name="q25" value="There has"> There has</label>
+        <label class="option-label"><input type="radio" name="q25" value="Is there"> Is there</label>
+        <label class="option-label"><input type="radio" name="q25" value="There was"> There was</label>
+      </div>
+      <div class="feedback" id="fb-25"></div>
+    </div>
+  </div>
+
+  <!-- Q26 -->
+  <div class="q-card" id="qcard-26">
+    <div class="q-header"><div class="q-num">26</div><span class="q-tag">There is / There are</span></div>
+    <div class="q-body">
+      <div class="q-instruction">Choose the correct option to complete the sentence.</div>
+      <div class="q-sentence">... any banks in this neighborhood?</div>
+      <div class="options" data-type="radio" data-correct="Are there">
+        <label class="option-label"><input type="radio" name="q26" value="Is there"> Is there</label>
+        <label class="option-label"><input type="radio" name="q26" value="Are there"> Are there</label>
+        <label class="option-label"><input type="radio" name="q26" value="There are"> There are</label>
+        <label class="option-label"><input type="radio" name="q26" value="Have there"> Have there</label>
+        <label class="option-label"><input type="radio" name="q26" value="Were there"> Were there</label>
+      </div>
+      <div class="feedback" id="fb-26"></div>
+    </div>
+  </div>
+
+  <!-- Q27 -->
+  <div class="q-card" id="qcard-27">
+    <div class="q-header"><div class="q-num">27</div><span class="q-tag">Past Simple — Irregular Verbs</span></div>
+    <div class="q-body">
+      <div class="q-instruction">Select ALL grammatically correct sentences.</div>
+      <div class="q-sentence">She ... to the meeting last Monday.</div>
+      <div class="options" data-type="checkbox" data-correct="went|did not go|didn't go">
+        <label class="option-label"><input type="checkbox" name="q27" value="went"> went</label>
+        <label class="option-label"><input type="checkbox" name="q27" value="goed"> goed</label>
+        <label class="option-label"><input type="checkbox" name="q27" value="did not go"> did not go</label>
+        <label class="option-label"><input type="checkbox" name="q27" value="didn't go"> didn't go</label>
+        <label class="option-label"><input type="checkbox" name="q27" value="has gone"> has gone</label>
+      </div>
+      <div class="feedback" id="fb-27"></div>
+    </div>
+  </div>
+
+  <!-- Q28 -->
+  <div class="q-card" id="qcard-28">
+    <div class="q-header"><div class="q-num">28</div><span class="q-tag">Prepositions of Place</span></div>
+    <div class="q-body">
+      <div class="q-instruction">Choose the correct option to complete the sentence.</div>
+      <div class="q-sentence">The pharmacy is ... the bookstore and the café.</div>
+      <div class="options" data-type="radio" data-correct="between">
+        <label class="option-label"><input type="radio" name="q28" value="next"> next</label>
+        <label class="option-label"><input type="radio" name="q28" value="behind"> behind</label>
+        <label class="option-label"><input type="radio" name="q28" value="between"> between</label>
+        <label class="option-label"><input type="radio" name="q28" value="across"> across</label>
+        <label class="option-label"><input type="radio" name="q28" value="on"> on</label>
+      </div>
+      <div class="feedback" id="fb-28"></div>
+    </div>
+  </div>
+
+  <!-- Q29 -->
+  <div class="q-card" id="qcard-29">
+    <div class="q-header"><div class="q-num">29</div><span class="q-tag">Quantifiers</span></div>
+    <div class="q-body">
+      <div class="q-instruction">Choose the correct option to complete the sentence.</div>
+      <div class="q-sentence">I don't have ... time to finish this project.</div>
+      <div class="options" data-type="radio" data-correct="much">
+        <label class="option-label"><input type="radio" name="q29" value="many"> many</label>
+        <label class="option-label"><input type="radio" name="q29" value="much"> much</label>
+        <label class="option-label"><input type="radio" name="q29" value="few"> few</label>
+        <label class="option-label"><input type="radio" name="q29" value="a few"> a few</label>
+        <label class="option-label"><input type="radio" name="q29" value="several"> several</label>
+      </div>
+      <div class="feedback" id="fb-29"></div>
+    </div>
+  </div>
+
+  <!-- Q30 -->
+  <div class="q-card" id="qcard-30">
+    <div class="q-header"><div class="q-num">30</div><span class="q-tag">Present Perfect — True/False</span></div>
+    <div class="q-body">
+      <div class="q-instruction">The following sentence uses Present Perfect. Decide if TRUE or FALSE.</div>
+      <div class="q-sentence">She has recently started a new job.</div>
+      <div class="options" data-type="radio" data-correct="Verdadero">
+        <label class="option-label"><input type="radio" name="q30" value="Verdadero"> Verdadero</label>
+        <label class="option-label"><input type="radio" name="q30" value="Falso"> Falso</label>
+      </div>
+      <div class="feedback" id="fb-30"><em>("has started" + "recently" → Present Perfect ✓)</em></div>
+    </div>
+  </div>
+
+  <!-- Q31 -->
+  <div class="q-card" id="qcard-31">
+    <div class="q-header"><div class="q-num">31</div><span class="q-tag">Adverbs of Frequency — Position</span></div>
+    <div class="q-body">
+      <div class="q-instruction">Choose the sentence where the adverb is in the CORRECT position.</div>
+      <div class="q-sentence">Which sentence is correct?</div>
+      <div class="options" data-type="radio" data-correct="She is always on time.">
+        <label class="option-label"><input type="radio" name="q31" value="She always is on time."> She always is on time.</label>
+        <label class="option-label"><input type="radio" name="q31" value="Always she is on time."> Always she is on time.</label>
+        <label class="option-label"><input type="radio" name="q31" value="She is always on time."> She is always on time.</label>
+        <label class="option-label"><input type="radio" name="q31" value="She is on time always."> She is on time always.</label>
+      </div>
+      <div class="feedback" id="fb-31"><em>(Con verbo To Be, el adverbio va DESPUÉS del verbo)</em></div>
+    </div>
+  </div>
+
+  <!-- Q32 -->
+  <div class="q-card" id="qcard-32">
+    <div class="q-header"><div class="q-num">32</div><span class="q-tag">Present Perfect — Markers</span></div>
+    <div class="q-body">
+      <div class="q-instruction">Choose the correct marker to complete the sentence.</div>
+      <div class="q-sentence">I haven't finished my homework ...</div>
+      <div class="options" data-type="radio" data-correct="yet">
+        <label class="option-label"><input type="radio" name="q32" value="already"> already</label>
+        <label class="option-label"><input type="radio" name="q32" value="just"> just</label>
+        <label class="option-label"><input type="radio" name="q32" value="yet"> yet</label>
+        <label class="option-label"><input type="radio" name="q32" value="since"> since</label>
+        <label class="option-label"><input type="radio" name="q32" value="lately"> lately</label>
+      </div>
+      <div class="feedback" id="fb-32"><em>("yet" se usa en frases negativas e interrogativas del Present Perfect)</em></div>
+    </div>
+  </div>
+
+  <!-- Q33 -->
+  <div class="q-card" id="qcard-33">
+    <div class="q-header"><div class="q-num">33</div><span class="q-tag">Past Simple vs Present Perfect</span></div>
+    <div class="q-body">
+      <div class="q-instruction">Choose the correct tense to complete the sentence.</div>
+      <div class="q-sentence">We ... this movie three times so far.</div>
+      <div class="options" data-type="radio" data-correct="have seen">
+        <label class="option-label"><input type="radio" name="q33" value="saw"> saw</label>
+        <label class="option-label"><input type="radio" name="q33" value="have seen"> have seen</label>
+        <label class="option-label"><input type="radio" name="q33" value="have saw"> have saw</label>
+        <label class="option-label"><input type="radio" name="q33" value="seen"> seen</label>
+        <label class="option-label"><input type="radio" name="q33" value="did see"> did see</label>
+      </div>
+      <div class="feedback" id="fb-33"><em>("three times so far" → acción repetida → Present Perfect)</em></div>
+    </div>
+  </div>
+
+  <!-- Q34 -->
+  <div class="q-card" id="qcard-34">
+    <div class="q-header"><div class="q-num">34</div><span class="q-tag">Present Continuous — Spelling</span></div>
+    <div class="q-body">
+      <div class="q-instruction">Choose the correct -ING form of the verb in parentheses.</div>
+      <div class="q-sentence">They are ... (write) a report right now.</div>
+      <div class="options" data-type="radio" data-correct="writing">
+        <label class="option-label"><input type="radio" name="q34" value="writeing"> writeing</label>
+        <label class="option-label"><input type="radio" name="q34" value="writting"> writting</label>
+        <label class="option-label"><input type="radio" name="q34" value="writing"> writing</label>
+        <label class="option-label"><input type="radio" name="q34" value="writhing"> writhing</label>
+      </div>
+      <div class="feedback" id="fb-34"><em>(write termina en consonante + e → se elimina la e → writing)</em></div>
+    </div>
+  </div>
+
+  <!-- Q35 -->
+  <div class="q-card" id="qcard-35">
+    <div class="q-header"><div class="q-num">35</div><span class="q-tag">Questions with HOW</span></div>
+    <div class="q-body">
+      <div class="q-instruction">Choose the correct HOW question for the answer given.</div>
+      <div class="q-sentence">Answer: "Pretty well. I type about 80 words per minute."</div>
+      <div class="options" data-type="radio" data-correct="How well do you type?">
+        <label class="option-label"><input type="radio" name="q35" value="How often do you type?"> How often do you type?</label>
+        <label class="option-label"><input type="radio" name="q35" value="How good do you type?"> How good do you type?</label>
+        <label class="option-label"><input type="radio" name="q35" value="How well do you type?"> How well do you type?</label>
+        <label class="option-label"><input type="radio" name="q35" value="How long do you type?"> How long do you type?</label>
+        <label class="option-label"><input type="radio" name="q35" value="How much do you type?"> How much do you type?</label>
+      </div>
+      <div class="feedback" id="fb-35"><em>("How well" pregunta por habilidad en acciones/verbos)</em></div>
+    </div>
+  </div>
+
+</div>
+</section>
+
+<!-- ========================= QUICK REFERENCE ========================= -->
+<section id="quickref" class="section">
+<div class="container">
+
+  <div class="module-intro">
+    <h2>⚡ Quick Reference</h2>
+    <p>Resumen rápido para repasar antes del parcial</p>
+  </div>
+
+  <div class="theory-card">
+    <div class="theory-card-header">Comparación de tiempos verbales</div>
+    <div class="theory-card-body">
+      <table class="grammar-table">
+        <thead><tr><th>Tiempo</th><th>Estructura</th><th>Uso clave</th><th>Marcadores</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Present Simple</strong></td>
+            <td>I work / He works</td>
+            <td>Rutinas, verdades generales</td>
+            <td>always, every day, usually</td>
+          </tr>
+          <tr>
+            <td><strong>Present Continuous</strong></td>
+            <td>I am working / She is working</td>
+            <td>Acción en progreso ahora; planes futuros confirmados</td>
+            <td>now, at the moment, today, currently</td>
+          </tr>
+          <tr>
+            <td><strong>Past Simple</strong></td>
+            <td>I worked / He went</td>
+            <td>Acción completada en tiempo definido</td>
+            <td>yesterday, last week, ago, in 2020</td>
+          </tr>
+          <tr>
+            <td><strong>Present Perfect</strong></td>
+            <td>I have worked / She has gone</td>
+            <td>Acción pasada con resultado presente; experiencia; tiempo indefinido</td>
+            <td>already, yet, ever, never, since, for, just, recently</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="theory-card">
+    <div class="theory-card-header gold-header">Errores comunes a evitar</div>
+    <div class="theory-card-body">
+      <table class="grammar-table">
+        <thead><tr><th>❌ Incorrecto</th><th>✅ Correcto</th><th>Razón</th></tr></thead>
+        <tbody>
+          <tr><td>She has gone yesterday</td><td>She went yesterday</td><td>Yesterday → Past Simple</td></tr>
+          <tr><td>I have cutted myself</td><td>I have cut myself</td><td>cut es irregular (cut-cut-cut)</td></tr>
+          <tr><td>Did not used</td><td>Did not use</td><td>DID + base form (sin -ED)</td></tr>
+          <tr><td>She haves a dog</td><td>She has a dog</td><td>No existe "haves"</td></tr>
+          <tr><td>They are laughing now → I does laugh</td><td>I am laughing</td><td>Continuous: TO BE + -ING</td></tr>
+          <tr><td>a lots of jokes</td><td>a lot of jokes / lots of jokes</td><td>No se combina "a lots"</td></tr>
+          <tr><td>many information</td><td>much information / a lot of information</td><td>information es incontable</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="theory-card">
+    <div class="theory-card-header red-header">SINCE vs FOR</div>
+    <div class="theory-card-body">
+      <div class="two-col">
+        <div class="info-box">
+          <strong>SINCE = desde un punto en el tiempo</strong><br>
+          I have lived here <em>since 2011</em>.<br>
+          She has worked here <em>since January</em>.
+        </div>
+        <div class="info-box">
+          <strong>FOR = durante un período de tiempo</strong><br>
+          She has studied English <em>for 10 years</em>.<br>
+          I have been here <em>for two hours</em>.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="theory-card">
+    <div class="theory-card-header">Adverbs — Posición rápida</div>
+    <div class="theory-card-body">
+      <table class="grammar-table">
+        <thead><tr><th>Caso</th><th>Posición</th><th>Ejemplo</th></tr></thead>
+        <tbody>
+          <tr><td>Verbo normal</td><td>ANTES del verbo</td><td>I <strong>never</strong> eat meat.</td></tr>
+          <tr><td>Verbo to BE</td><td>DESPUÉS del verbo</td><td>She is <strong>always</strong> late.</td></tr>
+          <tr><td>Sometimes</td><td>Inicio o antes del verbo</td><td><strong>Sometimes</strong> I wake up early.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+</section>
+
+<footer>
+  English Study Guide · Módulos 3 & 4 · Universidad Kennedy
+</footer>
+
+<script>
+// ---- TAB NAVIGATION ----
+function showSection(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+
+
+// ---- EXERCISE ANSWERS ----
+const answers = {
+  1:  { type: 'radio',    correct: ['any information.'] },
+  2:  { type: 'radio',    correct: ['usually'] },
+  3:  { type: 'radio',    correct: ['learning Chinese.'] },
+  4:  { type: 'radio',    correct: ['some jokes.'] },
+  5:  { type: 'radio',    correct: ['often'] },
+  6:  { type: 'radio',    correct: ['are'] },
+  7:  { type: 'checkbox', correct: ['is singing'] },
+  8:  { type: 'checkbox', correct: ['are laughing', "aren't laughing"] },
+  9:  { type: 'checkbox', correct: ['am brushing', 'am not brushing'] },
+  10: { type: 'radio',    correct: ['moving'] },
+  11: { type: 'radio',    correct: ['visited the Great Wall in China.'] },
+  12: { type: 'radio',    correct: ['went to the beach.'] },
+  13: { type: 'radio',    correct: ['It is near the airport.'] },
+  14: { type: 'radio',    correct: ['Falso'] },
+  15: { type: 'radio',    correct: ['Verdadero'] },
+  16: { type: 'radio',    correct: ['Yes, I have \u2013 and it hurt a lot!'] },
+  17: { type: 'radio',    correct: ['She left it at home.'] },
+  18: { type: 'checkbox', correct: ['have not', "haven't"] },
+  19: { type: 'checkbox', correct: ['were not', 'were', "weren't"] },
+  20: { type: 'checkbox', correct: ['used', "didn't use", 'did not use'] },
+  21: { type: 'radio',    correct: ['are playing in the park.'] },
+  22: { type: 'radio',    correct: ['for'] },
+  23: { type: 'radio',    correct: ['since'] },
+  24: { type: 'radio',    correct: ['I have never been to Japan.'] },
+  25: { type: 'radio',    correct: ['There is'] },
+  26: { type: 'radio',    correct: ['Are there'] },
+  27: { type: 'checkbox', correct: ['went', 'did not go', "didn't go"] },
+  28: { type: 'radio',    correct: ['between'] },
+  29: { type: 'radio',    correct: ['much'] },
+  30: { type: 'radio',    correct: ['Verdadero'] },
+  31: { type: 'radio',    correct: ['She is always on time.'] },
+  32: { type: 'radio',    correct: ['yet'] },
+  33: { type: 'radio',    correct: ['have seen'] },
+  34: { type: 'radio',    correct: ['writing'] },
+  35: { type: 'radio',    correct: ['How well do you type?'] },
+};
+
+const TOTAL = Object.keys(answers).length;
+
+// Store hint text before any manipulation
+const hintCache = {};
+document.querySelectorAll('.feedback[id^="fb-"]').forEach(el => {
+  const n = parseInt(el.id.replace('fb-', ''));
+  hintCache[n] = el.innerHTML;
+});
+
+function checkQuestion(n) {
+  const ans = answers[n];
+  if (!ans) return 0;
+  const card = document.getElementById('qcard-' + n);
+  const fb   = document.getElementById('fb-' + n);
+  const labels = card.querySelectorAll('.option-label');
+
+  labels.forEach(lbl => {
+    lbl.classList.remove('opt-correct', 'opt-wrong');
+    const input = lbl.querySelector('input');
+    const isChecked = input.checked;
+    const isCorrect = ans.correct.includes(input.value);
+    if (isChecked && isCorrect)  lbl.classList.add('opt-correct');
+    else if (isChecked && !isCorrect) lbl.classList.add('opt-wrong');
+    else if (!isChecked && isCorrect) lbl.classList.add('opt-correct');
+  });
+
+  let userCorrect = false;
+  if (ans.type === 'radio') {
+    const sel = card.querySelector('input[type=radio]:checked');
+    userCorrect = sel && ans.correct.includes(sel.value);
+  } else {
+    const checked = [...card.querySelectorAll('input[type=checkbox]:checked')].map(i => i.value);
+    userCorrect = [...ans.correct].sort().join('|') === [...checked].sort().join('|');
+  }
+
+  card.classList.remove('correct-card', 'wrong-card');
+  fb.classList.remove('show', 'fb-correct', 'fb-wrong');
+  const hint = hintCache[n] || '';
+  const hintMatch = hint.match(/(<em>[\s\S]*?<\/em>)/);
+  const extra = hintMatch ? ' ' + hintMatch[1] : '';
+
+  if (userCorrect) {
+    card.classList.add('correct-card');
+    fb.innerHTML = '✅ ¡Correcto!' + extra;
+    fb.classList.add('show', 'fb-correct');
+  } else {
+    card.classList.add('wrong-card');
+    fb.innerHTML = '❌ Incorrecto. Respuesta correcta: <strong>' + ans.correct.join(' / ') + '</strong>' + extra;
+    fb.classList.add('show', 'fb-wrong');
+  }
+  return userCorrect ? 1 : 0;
+}
+
+function resetOne(n) {
+  const card = document.getElementById('qcard-' + n);
+  const fb   = document.getElementById('fb-' + n);
+  card.classList.remove('correct-card', 'wrong-card');
+  card.querySelectorAll('input').forEach(inp => inp.checked = false);
+  card.querySelectorAll('.option-label').forEach(lbl => lbl.classList.remove('opt-correct', 'opt-wrong'));
+  fb.classList.remove('show', 'fb-correct', 'fb-wrong');
+  fb.innerHTML = hintCache[n] || '';
+}
+
+function checkAll() {
+  let score = 0;
+  for (let i = 1; i <= TOTAL; i++) score += checkQuestion(i);
+  document.getElementById('scoreDisplay').textContent = score + ' / ' + TOTAL;
+}
+
+function resetAll() {
+  for (let i = 1; i <= TOTAL; i++) resetOne(i);
+  document.getElementById('scoreDisplay').textContent = '0 / ' + TOTAL;
+}
+
+// Inject per-question reset button into every q-header
+document.querySelectorAll('.q-card').forEach(card => {
+  const idMatch = card.id.match(/qcard-(\d+)/);
+  if (!idMatch) return;
+  const n = idMatch[1];
+  const header = card.querySelector('.q-header');
+  const btn = document.createElement('button');
+  btn.className = 'btn-reset-q';
+  btn.textContent = '🔄 Reiniciar';
+  btn.onclick = () => resetOne(parseInt(n));
+  header.appendChild(btn);
+});
+
+// Auto-check radio on change
+document.querySelectorAll('.options input[type=radio]').forEach(inp => {
+  inp.addEventListener('change', () => {
+    const n = parseInt(inp.getAttribute('name').replace('q', ''));
+    checkQuestion(n);
+  });
+});
+</script>
+</body>
+</html>
