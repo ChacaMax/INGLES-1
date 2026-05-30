@@ -321,7 +321,6 @@
   .btn-reset:hover { color: white; border-color: #888; }
 
   .btn-reset-q {
-    margin-left: auto;
     background: transparent;
     color: #999;
     border: 1px solid #ccc;
@@ -335,6 +334,37 @@
     white-space: nowrap;
   }
   .btn-reset-q:hover { background: #fee2e2; color: #c0392b; border-color: #e74c3c; }
+
+  .btn-check-q {
+    margin-left: auto;
+    background: var(--teal);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 3px 12px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: 'Source Sans 3', sans-serif;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .btn-check-q:hover { background: var(--teal-light); }
+
+  .justification {
+    margin-top: 10px;
+    padding: 10px 14px;
+    background: #f0f7ff;
+    border-left: 3px solid #3b82f6;
+    border-radius: 0 6px 6px 0;
+    font-size: 0.88rem;
+    color: #1e3a5f;
+    line-height: 1.6;
+  }
+  .fb-result {
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
 
   /* ---- QUESTION CARD ---- */
   .q-card {
@@ -1586,14 +1616,46 @@ const answers = {
   35: { type: 'radio',    correct: ['How well do you type?'] },
 };
 
-const TOTAL = Object.keys(answers).length;
+// ---- JUSTIFICATIONS ----
+const justifications = {
+  1:  'En oraciones negativas usamos <strong>any</strong> (no some/many/lots). "Information" es un sustantivo incontable, por eso tampoco puede ir con "many" ni sin preposición.',
+  2:  '<strong>Usually</strong> expresa frecuencia alta pero no total. La oración dice "no soy... tarde, siempre llego a tiempo", entonces el contraste correcto es "usually" (usualmente). "Always" no genera contraste y "never" contradice el sentido.',
+  3:  'La forma negativa del Present Continuous es: <strong>TO BE + NOT + verbo-ING</strong>. "Are not learning" → contraído "aren\'t learning". Las otras opciones usan formas incorrectas (infinitivo, 3ª persona, modal).',
+  4:  'En oraciones afirmativas con sustantivos contables plurales usamos <strong>some</strong>. "A jokes" es incorrecto (artículo con plural), "a lots of" no existe, "a lot jokes" le falta "of", y "any" se usa en negativas.',
+  5:  '<strong>Often</strong> (a menudo) es el único adverbio de frecuencia que tiene sentido con "He loves sleeping" — indica que esto ocurre habitualmente. "At the moment" es para Present Continuous, "not never" es doble negación incorrecta, "every" y "ever" no son adverbios de frecuencia solos.',
+  6:  'Las preguntas en Present Continuous usan <strong>TO BE + sujeto + verbo-ING</strong>. "What ARE you studying?" — el auxiliar es "are" porque el sujeto es "you".',
+  7:  'La única forma correcta para afirmar que Charly canta ahora es <strong>is singing</strong> (He/She/It + IS + ING). "Singing" solo (sin TO BE) es incompleto. "Isn\'t singing" es negativa. Las otras no son formas válidas del Present Continuous.',
+  8:  'Con sujeto plural "they" el verbo TO BE es <strong>are</strong>. Ambas formas son correctas: afirmativa (<strong>are laughing</strong>) y negativa contraída (<strong>aren\'t laughing</strong>). "Does laugh" usa auxiliar del Simple Present incorrectamente, "is not laughing" sería para he/she/it.',
+  9:  'Con "I" el verbo TO BE es <strong>am</strong>. Son correctas la afirmativa (<strong>am brushing</strong>) y la negativa (<strong>am not brushing</strong>). "Brushing" solo está incompleto. "Not brushing" sin TO BE es incorrecto. "Do brushing" mezcla auxiliares incorrectamente.',
+  10: 'La pregunta "Who is ... into a house?" requiere el gerundio (<strong>moving</strong>) porque está en Present Continuous (is + ING). "Moves" es Simple Present, "are move / is move" son incorrectos, "move" sería infinitivo.',
+  11: 'Con <strong>already</strong> usamos Present Perfect + Past Participle. "Visit" → participio irregular: <strong>visited</strong>. "Did visit" es Past Simple, "visit" es infinitivo, "visiting" es gerundio, "visits" es 3ª persona del Simple Present.',
+  12: 'La oración empieza con "Last Sunday" → marcador de tiempo definido del pasado → <strong>Past Simple</strong>. "Went" es el pasado irregular de "go". "Have gone" sería Present Perfect (incorrecto con "last"), "go/going/gone" solos son incorrectos en este contexto.',
+  13: '<strong>Near</strong> significa "cerca de" y es la preposición correcta para indicar proximidad sin contacto. "Under to" no existe, "next across" es una combinación incorrecta, "far from towards" es contradictorio, "in front on" mezcla preposiciones incorrectamente.',
+  14: 'La oración usa <strong>Present Simple</strong> ("is between"), no Present Perfect. Para ser Present Perfect necesitaría HAVE/HAS + participio pasado. Por eso es <strong>Falso</strong>.',
+  15: '"Enjoyed" es el pasado regular de "enjoy" (-ED), y "yesterday" es un marcador de tiempo definido del pasado. Ambos confirman que es <strong>Past Simple</strong>. Verdadero.',
+  16: 'La respuesta corta del Present Perfect es <strong>Yes, I have</strong>. "Have cutted" es incorrecto (cut es irregular: cut-cut-cut). "I cuts" y "I does" son formas incorrectas. "I do" corresponde al Present Simple.',
+  17: 'La pregunta usa Past Simple ("did she leave") → la respuesta debe estar también en <strong>Past Simple</strong>. "Left" es el pasado irregular de "leave". "Leave/leaves" son Present Simple. "Have left" sería Present Perfect.',
+  18: 'La negativa del Present Perfect con "I" es <strong>have not</strong> o su forma contraída <strong>haven\'t</strong>. "Haves" no existe. "Has" es para he/she/it. "Can" es un modal diferente. "Yet" en negativos va al final de la oración, no en esa posición.',
+  19: 'Con "they" el pasado del verbo TO BE es <strong>were</strong> (afirmativo) o <strong>were not / weren\'t</strong> (negativo). "Are not" es presente. "Have been" es Present Perfect.',
+  20: 'En Past Simple: <strong>used</strong> (afirmativo, verbo regular -ED). Negativo: <strong>did not use / didn\'t use</strong> (DID + NOT + infinitivo sin TO). "Did not used" es incorrecto porque después de DID el verbo va en su forma base. "Use" solo no tiene tiempo.',
+  21: '"Look!" indica una acción que ocurre en este momento → <strong>Present Continuous</strong>. Con "they" es <strong>are playing</strong>. "Play" es Simple Present, "is playing" sería para he/she/it, "were playing" es Past Continuous, "have played" es Present Perfect.',
+  22: '<strong>For</strong> + período de tiempo (ten years, two months, etc.). <strong>Since</strong> + punto específico en el tiempo (2015, Monday, etc.). "Ten years" es un período → for.',
+  23: '<strong>Since</strong> + punto específico en el tiempo. "2015" es un año concreto → since. "For" iría con un período de duración como "for six years".',
+  24: 'La única opción correcta es <strong>I have never been to Japan</strong>: Present Perfect (have + participio "been") + adverbio de experiencia "never". "Have never went" usa el pasado simple en lugar del participio. "Never went ... yet" mezcla tiempos incorrectamente.',
+  25: '"A supermarket" es singular contable → <strong>There is</strong>. "There are" sería para plural. "There has / Is there" cambian el sentido o la estructura. "There was" es pasado.',
+  26: 'La oración es una pregunta (terminación "?") con "any banks" (plural) → <strong>Are there</strong>. En preguntas se invierte: Are there / Is there. "There are" es afirmativo. "Have there / Were there" son incorrectos en este contexto.',
+  27: 'Con "last Monday" (tiempo definido del pasado) → <strong>Past Simple</strong>. El pasado irregular de "go" es <strong>went</strong>. La negativa correcta es <strong>did not go / didn\'t go</strong> (DID + NOT + base). "Goed" no existe. "Has gone" es Present Perfect.',
+  28: '<strong>Between</strong> (entre) se usa cuando algo está en el medio de dos elementos. "Next" requiere "to" (next to). "Behind" es detrás. "Across" es enfrente/cruzando. "On" indica superficie.',
+  29: '"Time" es un sustantivo incontable → se usa <strong>much</strong> en negativas. "Many" y "few/a few" son para contables. "Several" también es para contables.',
+  30: '"Has recently started" = HAS + participio (started) + marcador de tiempo reciente (recently) → esto es exactamente <strong>Present Perfect</strong>. Verdadero.',
+  31: 'Cuando el verbo principal es TO BE, el adverbio de frecuencia va <strong>después</strong> del verbo: "She <strong>is always</strong> on time". Las otras opciones colocan el adverbio antes del verbo TO BE o al final, lo cual es incorrecto.',
+  32: '<strong>Yet</strong> se usa en oraciones negativas e interrogativas del Present Perfect, siempre al final. Significa "todavía/aún". "Already" es para afirmativas. "Just/lately" implican que la acción sí ocurrió recientemente.',
+  33: '"Three times so far" indica repetición hasta el presente → <strong>Present Perfect</strong>. La forma correcta es <strong>have seen</strong> (have + participio de see). "Saw" es Past Simple. "Have saw" usa el pasado simple en lugar del participio.',
+  34: '"Write" termina en consonante + e → se elimina la e antes de agregar -ING: write → <strong>writing</strong>. "Writeing" conserva la e incorrectamente. "Writting" duplica la t sin necesidad.',
+  35: '"How well" pregunta por la habilidad o calidad de una acción/verbo. La respuesta "Pretty well" confirma que se pregunta sobre una acción (tipear) → <strong>How well do you type?</strong>. "How good" se usa para personas, cosas o estados, no para acciones directas.',
+};
 
-// Store hint text before any manipulation
-const hintCache = {};
-document.querySelectorAll('.feedback[id^="fb-"]').forEach(el => {
-  const n = parseInt(el.id.replace('fb-', ''));
-  hintCache[n] = el.innerHTML;
-});
+const TOTAL = Object.keys(answers).length;
 
 function checkQuestion(n) {
   const ans = answers[n];
@@ -1623,17 +1685,16 @@ function checkQuestion(n) {
 
   card.classList.remove('correct-card', 'wrong-card');
   fb.classList.remove('show', 'fb-correct', 'fb-wrong');
-  const hint = hintCache[n] || '';
-  const hintMatch = hint.match(/(<em>[\s\S]*?<\/em>)/);
-  const extra = hintMatch ? ' ' + hintMatch[1] : '';
+
+  const justification = justifications[n] ? '<div class="justification">📖 <strong>Justificación:</strong> ' + justifications[n] + '</div>' : '';
 
   if (userCorrect) {
     card.classList.add('correct-card');
-    fb.innerHTML = '✅ ¡Correcto!' + extra;
+    fb.innerHTML = '<div class="fb-result">✅ ¡Correcto!</div>' + justification;
     fb.classList.add('show', 'fb-correct');
   } else {
     card.classList.add('wrong-card');
-    fb.innerHTML = '❌ Incorrecto. Respuesta correcta: <strong>' + ans.correct.join(' / ') + '</strong>' + extra;
+    fb.innerHTML = '<div class="fb-result">❌ Incorrecto. Respuesta correcta: <strong>' + ans.correct.join(' / ') + '</strong></div>' + justification;
     fb.classList.add('show', 'fb-wrong');
   }
   return userCorrect ? 1 : 0;
@@ -1646,7 +1707,7 @@ function resetOne(n) {
   card.querySelectorAll('input').forEach(inp => inp.checked = false);
   card.querySelectorAll('.option-label').forEach(lbl => lbl.classList.remove('opt-correct', 'opt-wrong'));
   fb.classList.remove('show', 'fb-correct', 'fb-wrong');
-  fb.innerHTML = hintCache[n] || '';
+  fb.innerHTML = '';
 }
 
 function checkAll() {
@@ -1660,25 +1721,24 @@ function resetAll() {
   document.getElementById('scoreDisplay').textContent = '0 / ' + TOTAL;
 }
 
-// Inject per-question reset button into every q-header
+// Inject per-question check + reset buttons into every q-header
 document.querySelectorAll('.q-card').forEach(card => {
   const idMatch = card.id.match(/qcard-(\d+)/);
   if (!idMatch) return;
-  const n = idMatch[1];
+  const n = parseInt(idMatch[1]);
   const header = card.querySelector('.q-header');
-  const btn = document.createElement('button');
-  btn.className = 'btn-reset-q';
-  btn.textContent = '🔄 Reiniciar';
-  btn.onclick = () => resetOne(parseInt(n));
-  header.appendChild(btn);
-});
 
-// Auto-check radio on change
-document.querySelectorAll('.options input[type=radio]').forEach(inp => {
-  inp.addEventListener('change', () => {
-    const n = parseInt(inp.getAttribute('name').replace('q', ''));
-    checkQuestion(n);
-  });
+  const btnCheck = document.createElement('button');
+  btnCheck.className = 'btn-check-q';
+  btnCheck.textContent = '✔ Verificar';
+  btnCheck.onclick = () => checkQuestion(n);
+  header.appendChild(btnCheck);
+
+  const btnReset = document.createElement('button');
+  btnReset.className = 'btn-reset-q';
+  btnReset.textContent = '🔄 Reiniciar';
+  btnReset.onclick = () => resetOne(n);
+  header.appendChild(btnReset);
 });
 </script>
 </body>
